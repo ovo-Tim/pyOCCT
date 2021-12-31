@@ -140,16 +140,23 @@ def main():
         raise NotADirectoryError("clangdev not found: {}".format(clang_include_path))
 
     # Gather all the includes for the parser
-    other_includes = [i for i in [vtk_include_path, tbb_include_path, clang_include_path] if i]
+    include_dirs = [i for i in [occt_include_path, vtk_include_path, tbb_include_path, clang_include_path] if i]
 
     # Add extra includes for missing OCCT headers that cause issues during parsing
-    other_includes.append(os.path.join(BINDER_ROOT, 'extra_includes'))
+    include_dirs.append(os.path.join(BINDER_ROOT, 'extra_includes'))
 
     print('\nGenerating all_includes.h file...')
     occt_mods = gen_includes(occt_include_path, BINDER_ROOT)
 
     # Initialize the main binding generation tool
-    gen = Generator(occt_mods, occt_include_path, *other_includes)
+    gen = Generator(
+        package_name='OCCT',
+        namespace={
+            'OCCT': occt_mods
+        },
+        all_includes=occt_include_path,
+        include_dirs=include_dirs
+    )
 
     # Output bindings path
     output_path = os.path.abspath(args.output_path)
