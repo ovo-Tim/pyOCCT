@@ -35,6 +35,7 @@ in X library files, which may not be present in all systems anyway.
 #if !defined(_WIN32) && !defined(__APPLE__)
 // Includes X11/Xlib.h
 #include <GL/glx.h>
+#endif
 
 struct __GLXFBConfigRec {
 
@@ -42,7 +43,7 @@ struct __GLXFBConfigRec {
 
 struct Aspect_XDisplay {};
 struct Aspect_XVisualInfo {};
-#endif
+
 
 
 #endif /* !__xTypes_h */
