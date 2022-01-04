@@ -59,15 +59,13 @@ if(NOT MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,-z,defs")
 endif()
 
-# Make symbols visibile so other extensions can build on top
-set(CMAKE_CXX_VISIBILITY_PRESET "default")
-
 # --------------------------------------------------------------------------- #
 # PYTHON and PYBIND11
 # --------------------------------------------------------------------------- #
 message(STATUS "Searching for Python and pybind11...")
 find_package(Python COMPONENTS Interpreter Development REQUIRED)
 find_package(pybind11 CONFIG REQUIRED)
+
 
 # --------------------------------------------------------------------------- #
 # TBB (for BVH header)
