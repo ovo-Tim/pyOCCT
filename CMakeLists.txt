@@ -26,7 +26,6 @@ project(pyOCCT VERSION 7.6.0.0 LANGUAGES C CXX)
 # --------------------------------------------------------------------------- #
 option(ENABLE_WARNINGS "Disable warning output." OFF)
 
-
 # --------------------------------------------------------------------------- #
 # SETTINGS
 # --------------------------------------------------------------------------- #
@@ -60,6 +59,8 @@ if(NOT MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,-z,defs")
 endif()
 
+# Make symbols visibile so other extensions can build on top
+set(CMAKE_CXX_VISIBILITY_PRESET "default")
 
 # --------------------------------------------------------------------------- #
 # PYTHON and PYBIND11
@@ -67,7 +68,6 @@ endif()
 message(STATUS "Searching for Python and pybind11...")
 find_package(Python COMPONENTS Interpreter Development REQUIRED)
 find_package(pybind11 CONFIG REQUIRED)
-
 
 # --------------------------------------------------------------------------- #
 # TBB (for BVH header)
@@ -154,6 +154,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE "${OUTPUT_PATH}")
 
 # Include the file specifying available OCCT modules
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/OCCT_Modules.cmake)
+
 
 # OCCT
 foreach(MOD ${OCCT_MODULES})
