@@ -1,9 +1,19 @@
+import re
 from setuptools import setup
+
+
+def get_version():
+    with open("OCCT/__init__.py") as f:
+        for line in f:
+            m = re.match(r"__version__ = ['\"](.+)['\"]", line)
+            if m:
+                return m.group(1)
+    raise ValueError("Could not find version")
 
 
 setup(
     name='OCCT',
-    version='7.6.0.0',
+    version=get_version(),
     packages=['OCCT', 'OCCT.Exchange', 'OCCT.Visualization'],
     package_data={'OCCT': ['*.so', '*.pyd', '*.dll', 'Visualization/_resources/*']},
     author='Trevor Laughlin',
