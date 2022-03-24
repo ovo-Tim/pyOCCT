@@ -89,3 +89,12 @@ ENV/
 
 # Spyder project settings
 .spyderproject
+
+# kdevelop
+.kdev4/
+*.kdev4
+*.kate-swp
+
+log.txt
+
+binder/all_includes.h
