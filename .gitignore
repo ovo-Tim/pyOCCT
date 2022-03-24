@@ -95,6 +95,7 @@ ENV/
 *.kdev4
 *.kate-swp
 
+# pyOCCT generated
 log.txt
-
 binder/all_includes.h
+src/
