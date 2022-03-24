@@ -87,3 +87,14 @@ After the binding sources are generated:
 
 Note that `PTHREAD_INCLUDE_DIR` will likely need defined manually since it cannot typically not be
 automatically found by CMake.
+
+
+## Updating for new version
+
+When updating to a new version of OCCT please ensure the occt version is
+updated in the following files:
+
+- ci/conda/meta.yaml
+- binder/environment.yml
+- CMakeLists.txt (project version, settings, and OCCT required version)
+- OCCT/__init__.py
