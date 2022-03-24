@@ -193,6 +193,7 @@ jobs:
         shell: bash -l {0}
         run: |
           rm -Rf C:/ProgramData/chocolatey/
+          rm -Rf C:/Program Files/LLVM
 
       - name: "Run conda build"
         shell: bash -l {0}
