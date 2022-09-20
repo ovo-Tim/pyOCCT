@@ -3,9 +3,9 @@ channels:
   - codelv
   - conda-forge
 dependencies:
-  - python=3.9
+  - python=3.10
   - clangdev
   - python-clang
-  - occt=7.6.2
+  - occt=7.6.3
   - tbb-devel
   - rapidjson
