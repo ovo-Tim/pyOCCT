@@ -208,6 +208,10 @@
 -function BRepApprox_ResConstraintOfMyGradientbisOfTheComputeLineOfApprox::Error
 -function BRepApprox_TheImpPrmSvSurfacesOfApprox::FillInitialVectorOfSolution
 
+# Not exported
+-function BRepBlend_CSWalking::IsDone
+-function BRepBlend_CSWalking::Line
+
 -function BRepClass3d_BndBoxTreeSelectorLine::BRepClass3d_BndBoxTreeSelectorLine
 -function BRepClass3d_BndBoxTreeSelectorPoint::BRepClass3d_BndBoxTreeSelectorPoint
 
@@ -267,6 +271,9 @@
 -function CDM_Document::operator<<
 -function CDM_MetaData::operator<<
 
+-function ChFi3d::IsTangentFaces(const TopoDS_Edge &, const TopoDS_Face &, const TopoDS_Face &, Standard_Real)
+-function ChFi3d::IsTangentFaces(const TopoDS_Edge &, const TopoDS_Face &, const TopoDS_Face &, Standard_Real, const GeomAbs_Shape)
+
 -function Cocoa_Window::Cocoa_Window
 -function Cocoa_Window::HView
 -function Cocoa_Window::SetHView
@@ -318,6 +325,8 @@
 -function GeomInt_WLApprox::Perform()
 
 -function Graphic3d_AspectText3d::Values
+
+-function Express_Entity::AbstractFlag
 
 -function HLRAlgo_PolyInternalData::UpdateLinks
 -function HLRAlgo_PolyInternalData::AddNode
@@ -725,6 +734,8 @@
 
 +header Prs3d: Poly_PolygonOnTriangulation.hxx
 +header Prs3d: Poly_Polygon3D.hxx
++header Prs3d: TopoDS_Face.hxx
++header Prs3d: TopoDS_Vertex.hxx
 
 +header PrsMgr: PrsMgr_Presentation.hxx
 +header RWGltf: bind_NCollection_Shared.hxx
@@ -862,6 +873,7 @@
 +iguard Font: Graphic3d
 +iguard Font: StdPrs
 +iguard Graphic3d: Select3D
++iguard Geom2dAdaptor: GeomLib
 +iguard LDOMBasicString: LDOM
 +iguard LDOMString: LDOM
 +iguard LDOMParser: LDOM
@@ -1028,6 +1040,8 @@
 +patch bind_SelectMgr_Frustum: cls_SelectMgr_Frustum.def(py::init<>());-->//cls_SelectMgr_Frustum.def(py::init<>());
 
 +patch Geom: (const TColStd_Array2OfReal * (Geom_BSplineSurface::*)() const) &Geom_BSplineSurface::Weights-->[](Geom_BSplineSurface& self) -> py::object {return self.Weights() ? py::cast(*self.Weights()) : py::none(); }
++patch Graphic3d: bind_std-->// patched out // bind_std
+
 
 +patch IVtkTools: (IVtkOCC_Shape::Handle (-->(opencascade::handle<IVtkOCC_Shape> (
 

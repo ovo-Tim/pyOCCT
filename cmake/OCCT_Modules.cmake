@@ -321,7 +321,6 @@ LIST(APPEND OCCT_MODULES
     UnitsMethods
     UTL
     V3d
-    Voxel
     Vrml
     VrmlAPI
     VrmlConverter

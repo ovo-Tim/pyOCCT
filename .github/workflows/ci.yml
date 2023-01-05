@@ -30,7 +30,7 @@ jobs:
           sudo rm -Rf /home/linuxbrew/
 
       - name: "Clone pyOCCT"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: 'recursive'
 
@@ -54,7 +54,7 @@ jobs:
           python binder/run.py -c binder/config.txt -o src
 
       - name: "Upload bindings"
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: pyocct_src_${{ matrix.os }}
           path: src
@@ -70,7 +70,7 @@ jobs:
     steps:
 
       - name: "Clone pyOCCT"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: 'recursive'
 
@@ -98,7 +98,7 @@ jobs:
           python binder/run.py -c binder/config.txt -o src
 
       - name: "Upload bindings"
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: pyocct_src_${{ matrix.os }}
           path: src
@@ -112,7 +112,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ['ubuntu-latest']
-        python-version: ['3.7', '3.8', '3.9', '3.10']
+        python-version: ['3.8', '3.9', '3.10', '3.11']
     steps:
 
       - name: "Install OpenGL"
@@ -124,7 +124,7 @@ jobs:
         run: sudo rm -Rf /home/linuxbrew/
 
       - name: "Clone pyOCCT"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: "Install conda build"
         shell: pwsh
@@ -137,7 +137,7 @@ jobs:
           conda list
 
       - name: "Download binding sources"
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: pyocct_src_${{ matrix.os }}
           path: src
@@ -149,7 +149,7 @@ jobs:
           conda build  ci/conda -c codelv -c conda-forge --python ${{ matrix.python-version }} --output-folder conda
 
       - name: "Upload conda package"
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: pyocct-py${{ matrix.python-version }}_${{ matrix.os }}
           path: conda
@@ -163,11 +163,11 @@ jobs:
       fail-fast: false
       matrix:
         os: ['windows-latest']
-        python-version: ['3.7', '3.8', '3.9', '3.10']
+        python-version: ['3.8', '3.9', '3.10', '3.11']
     steps:
 
       - name: "Clone pyOCCT"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: "Add conda to PATH"
         shell: bash -l {0}
@@ -184,7 +184,7 @@ jobs:
           conda list
 
       - name: "Download binding sources"
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: pyocct_src_${{ matrix.os }}
           path: src
@@ -203,7 +203,7 @@ jobs:
           conda build  ci/conda -c codelv -c conda-forge --python ${{ matrix.python-version }} --output-folder conda
 
       - name: "Upload conda package"
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: pyocct-py${{ matrix.python-version }}_${{ matrix.os }}
           path: conda
@@ -219,7 +219,7 @@ jobs:
     steps:
 
       - name: "Clone pyOCCT"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: 'recursive'
 
@@ -249,7 +249,7 @@ jobs:
           python binder/run.py -c binder/config.txt -o src
 
       - name: "Upload bindings"
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: pyocct_src_${{ matrix.os }}
           path: src
@@ -267,7 +267,7 @@ jobs:
 #    steps:
 #
 #      - name: "Clone pyOCCT"
-#        uses: actions/checkout@v2
+#        uses: actions/checkout@v3
 #
 #      - name: "Add conda to PATH"
 #        run: echo "$CONDA/bin" >> $GITHUB_PATH
@@ -294,7 +294,7 @@ jobs:
 #          conda list
 #
 #      - name: "Download binding sources"
-#        uses: actions/download-artifact@v2
+#        uses: actions/download-artifact@v3
 #        with:
 #          name: pyocct_src_${{ matrix.os }}
 #          path: src/occt
@@ -307,7 +307,7 @@ jobs:
 #          conda build  ci/conda -c conda-forge -c codelv --python ${{ matrix.python-version }} --output-folder conda
 #
 #      - name: "Upload conda package"
-#        uses: actions/upload-artifact@v2
+#        uses: actions/upload-artifact@v3
 #        with:
 #          name: pyocct-py${{ matrix.python-version }}_${{ matrix.os }}
 #          path: conda
