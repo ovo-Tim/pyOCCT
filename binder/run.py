@@ -120,10 +120,14 @@ def main():
     print('\tVTK: {}'.format(vtk_include_path))
     print('\tTBB: {}'.format(tbb_include_path))
 
+
     clang_include_path = ''
+    libcxx_include_path = ''
     if sys.platform.startswith('linux'):
-        clang_include_path = find_include_path('__stddef_max_align_t.h', conda_prefix)
+        clang_include_path = find_include_path('__stddef_max_align_t.h', conda_prefix) or ''
         print('Found clangdev include directory: {}'.format(clang_include_path))
+        libcxx_include_path = find_include_path('__cxxabi_config.h', conda_prefix) or ''
+        print('\tlibcxx: {}'.format(libcxx_include_path))
 
     if not occt_include_path or not os.path.exists(occt_include_path):
         raise NotADirectoryError("OCCT include path does not exist: {}".format(occt_include_path))
@@ -139,8 +143,18 @@ def main():
     if sys.platform.startswith('linux') and not os.path.exists(clang_include_path):
         raise NotADirectoryError("clangdev not found: {}".format(clang_include_path))
 
+    if sys.platform.startswith('linux') and not os.path.exists(libcxx_include_path):
+        raise NotADirectoryError("libcxx not found: {}".format(libcxx_include_path))
+
     # Gather all the includes for the parser
-    include_dirs = [i for i in [occt_include_path, vtk_include_path, tbb_include_path, clang_include_path] if i]
+    include_dirs = [i for i in [
+            occt_include_path,
+            vtk_include_path,
+            tbb_include_path,
+            libcxx_include_path,
+            clang_include_path,
+        ] if i
+    ]
 
     # Add extra includes for missing OCCT headers that cause issues during parsing
     include_dirs.append(os.path.join(BINDER_ROOT, 'extra_includes'))
