@@ -1042,6 +1042,8 @@
 +patch Geom: (const TColStd_Array2OfReal * (Geom_BSplineSurface::*)() const) &Geom_BSplineSurface::Weights-->[](Geom_BSplineSurface& self) -> py::object {return self.Weights() ? py::cast(*self.Weights()) : py::none(); }
 +patch Graphic3d: bind_std-->// patched out // bind_std
 
+# Bug in OCCT?
++patch BRepExtrema: bind_NCollection_CellFilter<-->// patched out // bind_NCollection_CellFilter<
 
 +patch IVtkTools: (IVtkOCC_Shape::Handle (-->(opencascade::handle<IVtkOCC_Shape> (
 

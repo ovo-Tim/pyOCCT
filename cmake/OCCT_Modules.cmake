@@ -180,10 +180,6 @@ LIST(APPEND OCCT_MODULES
     IntSurf
     IntTools
     IntWalk
-    IVtk
-    IVtkOCC
-    IVtkTools
-    IVtkVTK
     Law
     LDOM
     LDOMBasicString
