@@ -682,6 +682,8 @@
 
 +header BRepMesh: gp_XY.hxx
 +header BRepMesh: gp_XYZ.hxx
++header BRepExtrema: bind_BVH_Distance.hxx
++header BRepExtrema: bind_BVH_Traverse.hxx
 
 +header BRepOffsetAPI: TopoDS_Edge.hxx
 +header BRepOffsetAPI: TopoDS_Face.hxx
@@ -689,6 +691,7 @@
 +header BlendFunc: Adaptor2d_Curve2d.hxx
 
 +header BVH_Traverse<NumType, Dimension, BVHSetType, MetricType>: bind_BVH_BaseTraverse.hxx
++header BVH_Distance<NumType, Dimension, ObjectType, BVHSetType>: bind_BVH_Traverse.hxx
 +header BVH_BoxSet<NumType, Dimension, DataType>: bind_BVH_PrimitiveSet.hxx
 +header BVH_Box<T, N>: bind_BVH_BaseBox.hxx
 +header BVH_Geometry<T, N>: bind_BVH_ObjectSet.hxx
@@ -958,12 +961,15 @@
 +before_type BOPTools_BoxSelector<Dimension>-->bind_BVH_Traverse<Standard_Real, Dimension, BVH_BoxSet<Standard_Real, Dimension, Standard_Integer>, Standard_Boolean>(mod, "BOPTools_BoxSelector_Base", py::module_local());
 
 +before_type BVH_Traverse<NumType, Dimension, BVHSetType, MetricType>-->bind_BVH_BaseTraverse<MetricType>(mod, "BVH_Traverse_Base", py::module_local());
++before_type BVH_Distance<NumType, Dimension, ObjectType, BVHSetType>-->bind_BVH_Traverse<NumType, Dimension, BVHSetType, NumType>(mod, "BVH_Distance_Traverse", py::module_local());
 +before_type BVH_BoxSet<NumType, Dimension, DataType>-->bind_BVH_PrimitiveSet<NumType, Dimension>(mod, "BVH_BoxSet_Base", py::module_local());
 +before_type BVH_Box<T, N>-->bind_BVH_BaseBox<T, N, BVH_Box>(mod, name + "_" + typeid(T).name() + "_Base", py::module_local());
 +before_type BVH_Geometry<T, N>-->bind_BVH_ObjectSet<T, N>(mod, "BVH_Geometry_Base", py::module_local());
 +before_type BVH_ObjectSet<T, N>-->bind_BVH_Set<T, N>(mod, "BVH_ObjectSet_Base", py::module_local());
 +before_type BVH_PrimitiveSet<T, N>-->bind_BVH_Object<T, N>(mod, "BVH_PrimitiveSet_Base", py::module_local());
 +before_type BVH_Triangulation<T, N>-->bind_BVH_PrimitiveSet<T, N>(mod, "BVH_Triangulation_Base", py::module_local());
+
++before_type BRepExtrema_ProximityDistTool-->bind_BVH_Distance<Standard_Real, 3, BVH_Vec3d, BRepExtrema_TriangleSet>(mod, "BVH_Distance_Standard_Real3_BVH_Vec3d_BRepExtrema_TriangleSet", py::module_local());
 
 +before_type Graphic3d_BvhCStructureSetTrsfPers-->bind_BVH_Set<Standard_Real, 3>(mod, "BVH_Set_Standard_Real3", py::module_local());
 
@@ -1036,6 +1042,7 @@
 
 +patch bind_BVH_BaseBox: template <typename T, int N>-->template <typename T, int N, template <class /*T*/, int /*N*/> class TheDerivedBox>
 +patch bind_BVH_BaseBox: BVH_BaseBox<T, N>-->BVH_BaseBox<T, N, TheDerivedBox>
++patch bind_BVH_Distance: cls_BVH_Distance.def(py::init<>());-->// cls_BVH_Distance.def(py::init<>());
 +patch bind_BVH_Traverse: (const int &)-->(const opencascade::handle<BVH_Tree <NumType, Dimension>>&)
 +patch bind_SelectMgr_Frustum: cls_SelectMgr_Frustum.def(py::init<>());-->//cls_SelectMgr_Frustum.def(py::init<>());
 
