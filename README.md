@@ -98,3 +98,4 @@ updated in the following files:
 - binder/environment.yml
 - CMakeLists.txt (project version, settings, and OCCT required version)
 - OCCT/__init__.py
+- Ensure cmake/OCCT_Modules.cmake is up to date

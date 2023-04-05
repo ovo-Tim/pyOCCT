@@ -84,11 +84,15 @@ LIST(APPEND OCCT_MODULES
     Convert
     CPnts
     CSLib
+    DE
+    DEBRepCascade
+    DEXCAFCascade
     Draft
     DsgPrs
     ElCLib
     ElSLib
     Expr
+    Express
     ExprIntrp
     Extrema
     FairCurve
@@ -129,7 +133,6 @@ LIST(APPEND OCCT_MODULES
     GeomToIGES
     GeomTools
     GeomToStep
-    glext
     gp
     GProp
     Graphic3d
@@ -168,7 +171,6 @@ LIST(APPEND OCCT_MODULES
     IntCurvesFace
     IntCurveSurface
     Interface
-    InterfaceGraphic
     Intf
     IntImp
     IntImpParGen
@@ -196,7 +198,6 @@ LIST(APPEND OCCT_MODULES
     Media
     MeshVS
     Message
-    MMgt
     MoniTool
     NCollection
     NLPlate
@@ -218,6 +219,7 @@ LIST(APPEND OCCT_MODULES
     RWHeaderSection
     RWMesh
     RWObj
+    RWPly
     RWStepAP203
     RWStepAP214
     RWStepAP242
@@ -226,6 +228,7 @@ LIST(APPEND OCCT_MODULES
     RWStepElement
     RWStepFEA
     RWStepGeom
+    RWStepKinematics
     RWStepRepr
     RWStepShape
     RWStepVisual

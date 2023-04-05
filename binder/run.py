@@ -75,6 +75,16 @@ def gen_includes(occt_include_path, output_path):
         for header in all_includes:
             fout.write('#include <{}>\n'.format(header))
 
+    with open(os.path.join(output_path, 'OCCT_Modules.cmake'), 'w') as f:
+        lines = [
+            "# List of available OCCT modules. This may need updated if the upstream modules change.",
+            "LIST(APPEND OCCT_MODULES",
+        ]
+        for mod in occt_mods:
+            lines.append(f"    {mod}")
+        lines.append(")")
+        f.write("\n".join(lines))
+
     return occt_mods
 
 
@@ -212,6 +222,7 @@ def main():
 
     print('Binding...')
     gen.bind(output_path)
+
     print('Done!')
     print('-' * 100)
 
