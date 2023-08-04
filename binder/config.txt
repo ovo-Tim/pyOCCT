@@ -884,6 +884,7 @@
 +iguard SelectBasics: Select3D
 +iguard SelectBasics: SelectMgr
 +iguard SelectMgr: StdSelect
++iguard SelectMgr: AIS
 +iguard Standard: TCollection
 +iguard Standard: NCollection
 +iguard StepRepr: StepShape

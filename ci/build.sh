@@ -23,7 +23,7 @@ cmake -G "Ninja" \
   -DPython_FIND_FRAMEWORK=NEVER \
   ..
 
-ninja -j1 install
+ninja -j${CPU_COUNT} install
 
 cd ..
 python setup.py install --prefix="$PREFIX"
