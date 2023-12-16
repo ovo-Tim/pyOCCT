@@ -194,7 +194,8 @@
 
 -function BOPAlgo_PaveFiller::Iterator
 -function BOPAlgo_Tools::PerformCommonBlocks_
-
+-function BOPDS_SubIterator::SetDS
+-function BOPDS_Iterator::SetDS
 -function BRepAlgo_DSAccess::IsDeleted
 
 -function BRepMeshData_Curve::BRepMeshData_Curve
@@ -221,8 +222,12 @@
 
 -function BRepFeat::IsInOut_
 -function BRepFeat_MakeLinearForm::TransformShapeFU
-
+-function BRepFill_AdvancedEvolved::SetTemporaryDirectory
 -function BRepGProp_VinertGK::GetAbsolutError
+
+#-function TopOpeBRepBuild_BuilderON::TopOpeBRepBuild_BuilderON(const TopOpeBRepBuild_PBuilder &, const TopoDS_Shape &, const TopOpeBRepBuild_PGTopo &, const TopOpeBRepTool_Plos &, const TopOpeBRepBuild_PWireEdgeSet &)
+#-function TopOpeBRepBuild_BuilderON::Perform
+#-function TopOpeBRepBuild_BuilderON::Perform2d
 
 -function BRepMesh_ConeRangeSplitter::GetSplitSteps
 
@@ -230,6 +235,9 @@
 -function BRepMesh_ConstrainedBaseMeshAlgo::getCellsCount
 
 -function BRepMesh_DataStructureOfDelaun::ElementNodes
+-function BRepMeshData_Wire::AddEdge
+-function BRepMeshData_Edge::AddPCurve
+-function BRepMeshData_Edge::GetPCurve
 -function BRepMesh_Delaun::Frontier
 -function BRepMesh_Delaun::InternalEdges
 -function BRepMesh_Delaun::FreeEdges
@@ -269,6 +277,7 @@
 -function CDF_DirectoryIterator::CDF_DirectoryIterator
 
 -function CDM_Document::operator<<
+#-function CDM_Document::Update(const opencascade::handle<CDM_Document> &, const Standard_Integer, const Standard_Address)
 -function CDM_MetaData::operator<<
 
 -function ChFi3d::IsTangentFaces(const TopoDS_Edge &, const TopoDS_Face &, const TopoDS_Face &, Standard_Real)
@@ -279,6 +288,7 @@
 -function Cocoa_Window::SetHView
 -function Cocoa_Window::get_type_descriptor_
 -function Cocoa_Window::VirtualKeyFromNative_
+-function CPnts_MyRootFunction::Init(const CPnts_RealFunction &, const Standard_Address, const Standard_Integer)
 
 -function DsgPrs_RadiusPresentation::Add(const opencascade::handle<Prs3d_Presentation> &, const opencascade::handle<Prs3d_Drawer> &, const TCollection_ExtendedString &, const gp_Pnt &, const gp_Circ &, const Standard_Real, const Standard_Real, const DsgPrs_ArrowSide, const Standard_Boolean, const Standard_Boolean)
 
@@ -394,6 +404,8 @@
 
 -function MyDirectPolynomialRoots::MyDirectPolynomialRoots
 
+-function NCollection_CellFilter<Inspector>::Remove
+
 -function Interval::Interval
 -function Interval::IntersectionWithBounded
 -function Interval::Length
@@ -495,6 +507,7 @@
 -function MoniTool_CaseData::Text
 -function MoniTool_TypedValue::Internals
 
+-function NCollection_DataMap<TheKeyType, TheItemType, Hasher>::Bind
 -function NCollection_DataMap<TheKeyType, TheItemType, Hasher>::Bound
 -function NCollection_DataMap<TheKeyType, TheItemType, Hasher>::Seek
 -function NCollection_DataMap<TheKeyType, TheItemType, Hasher>::ChangeSeek
@@ -506,7 +519,10 @@
 -function NCollection_Vec3<Element_t>::cwiseAbs
 -function NCollection_Vec4<Element_t>::cwiseAbs
 
+-function OSD_OpenStream
+-function OSD_Thread::OSD_Thread(const OSD_ThreadFunction &)
 -function OSD::RealToCString_
+-function OSD_SharedLibrary::DlSymb
 -function OSD_Path::LocateExecFile
 
 -function OpenGl_GlCore11::glGetPointerv
@@ -552,6 +568,8 @@
 # Undefined symbol on Linux
 -function ShapeFix_Edge::Context
 
+-function Standard_ErrorHandler::Label
+
 -function StdPersistent_DataXtd_Constraint::Import
 -function StdPersistent_DataXtd_PatternStd::Import
 -function StdPersistent_TopLoc::Translate_
@@ -561,7 +579,7 @@
 -function StdObject_Location::Import
 
 -function StdSelect_BRepOwner::Set
-#-function StdStorage_TypeData::Instantiator
+-function StdStorage_TypeData::Instantiator
 
 -function StepData_FreeFormEntity::StepData_FreeFormEntity
 -function StepData_StepReaderData::ReadEnumParam
@@ -581,8 +599,11 @@
 -function TCollection_ExtendedString::ToWideString
 
 -function TDF_Label::FindAttribute
+-function TDF_DerivedAttribute::Register_
 
 -function TDocStd_Application::Open
+-function TDocStd_XLinkRoot::Insert_
+-function TDocStd_XLinkRoot::Remove_
 
 -function TNaming_RefShape::FirstUse
 
@@ -634,6 +655,14 @@
 
 # Unresolved symbol
 -function Xw_Window::DisplayConnection
+
+-function Wasm_Window::NativeFBConfig
+-function Wasm_Window::ProcessMouseEvent
+-function Wasm_Window::ProcessWheelEvent
+-function Wasm_Window::ProcessTouchEvent
+-function Wasm_Window::ProcessKeyEvent
+-function Wasm_Window::ProcessUiEvent
+-function Wasm_Window::ProcessFocusEvent
 
 # Headers ---------------------------------------------------------------------
 -header* AdvApp2Var_Data_f2c.hxx
@@ -699,12 +728,15 @@
 +header BVH_PrimitiveSet<T, N>: bind_BVH_Object.hxx
 +header BVH_Triangulation<T, N>: bind_BVH_PrimitiveSet.hxx
 +header CPnts: Adaptor2d_Curve2d.hxx
++header Contap: BRepGProp_Face.hxx
++header Contap: BRepGProp_Domain.hxx
 +header Font: bind_Font_BRepFont.hxx
 
 +header Graphic3d: bind_BVH_Set.hxx
 +header Graphic3d: Precision.hxx
 +header GeomLib: Geom2d_BezierCurve.hxx
-
++header Extrema: BRepGProp_Face.hxx
++header Extrema: BRepGProp_Domain.hxx
 +header HLRAlgo: gp_XYZ.hxx
 +header HLRTopoBRep: Adaptor2d_Curve2d.hxx
 
@@ -797,6 +829,21 @@
 +pname NCollection_Lerp<gp_Trsf>-->gp_TrsfNLerp
 +pname GCPnts_TCurveTypes<Adaptor3d_Curve>-->GCPnts_TCurveTypes3d
 +pname GCPnts_TCurveTypes<Adaptor2d_Curve2d>-->GCPnts_TCurveTypes2d
+
++pname NCollection_DefaultHasher<bool>--> NCollection_Hasher_bool
++pname NCollection_DefaultHasher<char>--> NCollection_Hasher_char
++pname NCollection_DefaultHasher<signed char>--> NCollection_Hasher_signed_char
++pname NCollection_DefaultHasher<unsigned char>--> NCollection_Hasher_unsigned_char
++pname NCollection_DefaultHasher<wchar_t>--> NCollection_Hasher_wchar_t
++pname NCollection_DefaultHasher<char16_t>--> NCollection_Hasher_char16_t
++pname NCollection_DefaultHasher<char32_t>--> NCollection_Hasher_char32_t
++pname NCollection_DefaultHasher<short>--> NCollection_Hasher_short
++pname NCollection_DefaultHasher<long>--> NCollection_Hasher_long
++pname NCollection_DefaultHasher<long long>--> NCollection_Hasher_long_long
++pname NCollection_DefaultHasher<unsigned short>--> NCollection_Hasher_unsigned_short
++pname NCollection_DefaultHasher<unsigned int>--> NCollection_Hasher_unsigned_int
++pname NCollection_DefaultHasher<unsigned long>--> NCollection_Hasher_unsigned_long
++pname NCollection_DefaultHasher<unsigned long long>--> NCollection_Hasher_unsigned_long_long
 
 # nodelete option -------------------------------------------------------------
 +nodelete TDF_LabelNode
@@ -974,11 +1021,12 @@
 
 +before_type Graphic3d_BvhCStructureSetTrsfPers-->bind_BVH_Set<Standard_Real, 3>(mod, "BVH_Set_Standard_Real3", py::module_local());
 
-
 +before_type RWGltf_GltfSceneNodeMap-->bind_NCollection_IndexedMap<XCAFPrs_DocumentNode, XCAFPrs_DocumentNode>(mod,  "XCAFPrs_DocumentNode_IndexedMap", py::module_local());
 
 +before_type OpenGl_BVHClipPrimitiveTrsfPersSet-->bind_BVH_Set<Standard_Real, 3>(mod, "BVH_Set_Standard_Real3", py::module_local());
 +before_type OpenGl_RaytraceGeometry-->bind_BVH_Geometry<Standard_ShortReal, 3>(mod, "BVH_Geometry_Standard_ShortReal3", py::module_local());
+
+#+before_type NCollection_Sequence<TheItemType>-->using Iterator = typename NCollection_Sequence<TheItemType>::Iterator;
 
 +before_type Poly_ArrayOfNodes-->bind_NCollection_AliasedArray<16>(mod, "NCollection_AliasedArray16", py::module_local());
 
@@ -1026,7 +1074,7 @@
 
 +after_type TDocStd_Application-->cls_TDocStd_Application.def("Open", [](TDocStd_Application &self, const TCollection_ExtendedString &path, opencascade::handle<TDocStd_Document> &aDoc) {PCDM_ReaderStatus status = self.Open(path, aDoc);  return std::tuple<PCDM_ReaderStatus, opencascade::handle<TDocStd_Document>>(status, aDoc); }, "Retrieves the document aDoc stored under the name aName in the directory directory. In order not to override a version of aDoc which is already in memory, this method can be made to depend on the value returned by IsInSession.", py::arg("path"), py::arg("aDoc"));
 
-+after_type TopoDS_Shape-->cls_TopoDS_Shape.def("__hash__", [](TopoDS_Shape &self) {return self.HashCode(999999); });
++after_type TopoDS_Shape-->cls_TopoDS_Shape.def("__hash__", [](TopoDS_Shape &self) { return std::hash<TopoDS_Shape>()(self); });
 
 +after_type XCAFDoc_ShapeTool-->cls_XCAFDoc_ShapeTool.def("FindSubShape", [](XCAFDoc_ShapeTool &self, const TDF_Label &shapeL, const TopoDS_Shape &sub) { TDF_Label L; Standard_Boolean status = self.FindSubShape(shapeL, sub, L); return std::tuple<Standard_Boolean, TDF_Label>(status, L); }, "Finds a label for subshape of shape stored on label shapeL Returns Null label if it is not found", py::arg("shapeL"), py::arg("sub"));
 +after_type XCAFDoc_VisMaterial-->bind_NCollection_DataMap<opencascade::handle<XCAFDoc_VisMaterial>, opencascade::handle<XCAFDoc_VisMaterial>, NCollection_DefaultHasher<opencascade::handle<Standard_Transient>> >(mod, "XCAFDoc_VisMaterialDataMap", py::module_local(false));
@@ -1035,9 +1083,6 @@
 +after_type Standard_Failure-->py::register_exception_translator([](std::exception_ptr p) {try {if (p) std::rethrow_exception(p);} catch (const Standard_Failure &e) { PyErr_SetString(PyExc_RuntimeError, e.GetMessageString());}});
 
 # Patches ---------------------------------------------------------------------
-
-# Patch parameter for AIS_ManipulatorObjectSequence::Append
-+patch AIS: (AIS_ManipulatorObjectSequence::*)(const int &)-->(AIS_ManipulatorObjectSequence::*)(const typename AIS_ManipulatorObjectSequence::value_type &)
 
 +patch bind_BOPTools_PairSelector: std::vector<PairIDs>-->std::vector<typename BOPTools_PairSelector<Dimension>::PairIDs>
 
@@ -1050,21 +1095,8 @@
 +patch Geom: (const TColStd_Array2OfReal * (Geom_BSplineSurface::*)() const) &Geom_BSplineSurface::Weights-->[](Geom_BSplineSurface& self) -> py::object {return self.Weights() ? py::cast(*self.Weights()) : py::none(); }
 +patch Graphic3d: bind_std-->// patched out // bind_std
 
-# Bug in OCCT?
-+patch BRepExtrema: bind_NCollection_CellFilter<-->// patched out // bind_NCollection_CellFilter<
-
-+patch IVtkTools: (IVtkOCC_Shape::Handle (-->(opencascade::handle<IVtkOCC_Shape> (
-
-# TDataXtd_ConstraintEnum seems to be missing
-+patch TDataXtd: (const int, const opencascade::handle<TNaming_NamedShape> &-->(const TDataXtd_ConstraintEnum, const opencascade::handle<TNaming_NamedShape> &
-+patch TDataXtd: (const int, Standard_OStream &)-->(const TDataXtd_ConstraintEnum, Standard_OStream &)
-
-# Standard_UUID is messed up
-+patch Standard: py::class_<> cls_GUID(mod, "GUID", "None");-->py::class_<Standard_UUID> cls_Standard_UUID(mod, "Standard_UUID", "None");
-+patch Standard: cls_GUID.def(py::init<>());-->cls_Standard_UUID.def(py::init<>());
-+patch Standard: cls_GUID.def_readwrite("Data1", &Data1, "None");-->cls_Standard_UUID.def_readwrite("Data1", &Standard_UUID::Data1, "None");
-+patch Standard: cls_GUID.def_readwrite("Data2", &Data2, "None");-->cls_Standard_UUID.def_readwrite("Data2", &Standard_UUID::Data2, "None");
-+patch Standard: cls_GUID.def_readwrite("Data3", &Data3, "None");-->cls_Standard_UUID.def_readwrite("Data3", &Standard_UUID::Data3, "None");
+# Second type is inferred from first
++patch RWGltf: bind_NCollection_IndexedMap<XCAFPrs_DocumentNode, XCAFPrs_DocumentNode>-->bind_NCollection_IndexedMap<XCAFPrs_DocumentNode>
 
 # Font workaround
 +patch Font: py::class_<Font_BRepFont, opencascade::handle<Font_BRepFont>>-->py::class_<Font_BRepFont_, std::unique_ptr<Font_BRepFont_, py::nodelete>>

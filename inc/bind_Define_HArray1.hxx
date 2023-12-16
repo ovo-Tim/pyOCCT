@@ -56,7 +56,7 @@ cls.def("IsEmpty", (Standard_Boolean(TheHArray1Type::*)() const) &TheHArray1Type
 cls.def("Lower", (Standard_Integer(TheHArray1Type::*)() const) &TheHArray1Type::Lower, "Lower bound");
 cls.def("Upper", (Standard_Integer(TheHArray1Type::*)() const) &TheHArray1Type::Upper, "Upper bound");
 cls.def("IsDeletable", (Standard_Boolean(TheHArray1Type::*)() const) &TheHArray1Type::IsDeletable, "myDeletable flag");
-cls.def("IsAllocated", (Standard_Boolean(TheHArray1Type::*)() const) &TheHArray1Type::IsAllocated, "IsAllocated flag - for naming compatibility");
+// cls.def("IsAllocated", (Standard_Boolean(TheHArray1Type::*)() const) &TheHArray1Type::IsAllocated, "IsAllocated flag - for naming compatibility");
 cls.def("Assign", (TheArray1Type & (TheHArray1Type::*)(const TheArray1Type &)) &TheHArray1Type::Assign, "Copies data of theOther array to this. This array should be pre-allocated and have the same length as theOther; otherwise exception Standard_DimensionMismatch is thrown.", py::arg("theOther"));
 cls.def("Move", (TheArray1Type & (TheHArray1Type::*)(TheArray1Type &)) &TheHArray1Type::Move, "Move assignment. This array will borrow all the data from theOther. The moved object will keep pointer to the memory buffer and range, but it will not free the buffer on destruction.", py::arg("theOther"));
 // cls.def("operator=", (TheArray1Type & (TheHArray1Type::*)(const TheArray1Type &)) &TheHArray1Type::operator=, "Assignment operator;", py::arg("theOther"));
