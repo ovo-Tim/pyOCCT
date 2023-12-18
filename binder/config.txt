@@ -21,6 +21,12 @@
 +immutable Standard_Integer
 +immutable Standard_Real
 
+# Sort priority --------------------------------------------------------------
+# Format "+sort mod: pattern=priority"
+# Default priority is 10000, original order is retained within a given priority
+# Pushes all Array1 defs before any Array2
++sort TColgp: Array1=1
+
 # Excluded classes ------------------------------------------------------------
 -class AIS_LocalStatus
 
