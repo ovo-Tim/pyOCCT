@@ -100,8 +100,8 @@ jobs:
           iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
           scoop bucket add main
           scoop install main/clangd
-          tree ~\scoop\apps\clangd\17.0.3
-          copy ~\scoop\apps\clangd\17.0.3\bin\libclang.dll C:\Miniconda\envs\binder\DLLs
+          tree ~\scoop\apps\clangd\current
+          copy ~\scoop\apps\clangd\current\libclang.dll C:\Miniconda\envs\binder\DLLs
 
       - name: "Generate bindings"
         shell: bash -l {0}
@@ -158,7 +158,7 @@ jobs:
         shell: pwsh
         run: |
           mkdir conda
-          conda build  ci -c conda-forge --python ${{ matrix.python-version }} --output-folder conda
+          conda build ci -c conda-forge --python ${{ matrix.python-version }} --output-folder conda --token ${{ secrets.ANACONDA_TOKEN }}
 
       - name: "Upload conda package"
         uses: actions/upload-artifact@v3
@@ -212,7 +212,7 @@ jobs:
         run: |
           mkdir conda
           source activate
-          conda build  ci -c conda-forge --python ${{ matrix.python-version }} --output-folder conda
+          conda build  ci -c conda-forge --python ${{ matrix.python-version }} --output-folder conda --token ${{ secrets.ANACONDA_TOKEN }}
 
       - name: "Upload conda package"
         uses: actions/upload-artifact@v3
@@ -316,7 +316,7 @@ jobs:
         run: |
           mkdir conda
           conda activate
-          conda build  ci -c conda-forge --python ${{ matrix.python-version }} --output-folder conda
+          conda build ci -c conda-forge --python ${{ matrix.python-version }} --output-folder conda --token ${{ secrets.ANACONDA_TOKEN }}
 
       - name: "Upload conda package"
         uses: actions/upload-artifact@v3
