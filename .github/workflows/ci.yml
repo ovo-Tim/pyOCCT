@@ -13,7 +13,7 @@ on:
 
 jobs:
   generate_linux:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    if: !contains(github.event.head_commit.message, 'skip ci')  and !contains(github.event.head_commit.message, 'only mac')
     name: Generate (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
@@ -62,7 +62,7 @@ jobs:
           path: src
 
   generate_win:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    if: !contains(github.event.head_commit.message, 'skip ci')  and !contains(github.event.head_commit.message, 'only mac')
     name: Generate (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
@@ -116,7 +116,7 @@ jobs:
           path: src
 
   build_linux:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    if: "!contains(github.event.head_commit.message, 'skip ci')
     name: Build (${{ matrix.python-version }}, ${{ matrix.os }})
     needs: generate_linux
     runs-on: ${{ matrix.os }}
@@ -167,7 +167,7 @@ jobs:
           path: conda
 
   build_win:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    if: !contains(github.event.head_commit.message, 'skip ci')
     name: Build (${{ matrix.python-version }}, ${{ matrix.os }})
     needs: generate_win
     runs-on: ${{ matrix.os }}
@@ -221,7 +221,7 @@ jobs:
           path: conda
 
   generate_macos:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    if: !contains(github.event.head_commit.message, 'skip ci') or contains(github.event.head_commit.message, 'only mac')
     name: Generate (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
@@ -293,6 +293,7 @@ jobs:
 
           brew install glew
           brew install glfw
+          brew install vtk
 
       - name: "Configure conda"
         shell: pwsh
