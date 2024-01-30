@@ -6,7 +6,7 @@ source:
   path: ../
 
 build:
-  number: 100
+  number: 0
 
 requirements:
   build:
@@ -20,13 +20,13 @@ requirements:
     - {{ cdt('libxext-devel') }}     # [linux]
 
   host:
-    - python
+    - python {{ python }}
     - pybind11
     - occt ==7.8.0
     - tbb-devel
 
   run:
-    - python
+    - python {{ python }}.*
     - occt ==7.8.0
 
 test:
