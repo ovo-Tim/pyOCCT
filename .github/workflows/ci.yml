@@ -296,6 +296,7 @@ jobs:
           brew install glew
           brew install glfw
           brew install vtk
+          brew install ninja
 
       - name: "Configure conda"
         shell: pwsh

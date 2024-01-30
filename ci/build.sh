@@ -26,7 +26,7 @@ cmake -G "Ninja" \
 if [[ ${HOST} =~ .*linux.* ]]; then
   ninja -j${CPU_COUNT} install
 else
-  cmake --build . -j $(nproc) --target install
+  cmake --build . -j ${CPU_COUNT} --target install
 fi
 
 cd ..
