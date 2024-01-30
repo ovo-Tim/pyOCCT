@@ -23,7 +23,11 @@ cmake -G "Ninja" \
   -DPython_FIND_FRAMEWORK=NEVER \
   ..
 
-ninja -j${CPU_COUNT} install
+if [[ ${HOST} =~ .*linux.* ]]; then
+  ninja -j${CPU_COUNT} install
+else
+  cmake --build . -j $(nproc) --target install
+fi
 
 cd ..
 python setup.py install --prefix="$PREFIX"
