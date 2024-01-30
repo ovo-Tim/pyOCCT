@@ -93,6 +93,14 @@ jobs:
           conda info -a
           conda list
 
+      - name: "Install scoop and clang"
+        shell: Powershell
+        run: |
+          set-executionpolicy remotesigned -scope currentuser
+          iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+          scoop bucket add main
+          scoop install main/clangd
+
       - name: "Generate bindings"
         shell: bash -l {0}
         run: |
