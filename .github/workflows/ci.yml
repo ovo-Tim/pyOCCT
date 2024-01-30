@@ -100,8 +100,8 @@ jobs:
           iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
           scoop bucket add main
           scoop install main/clangd
-          tree ~\scoop\apps\clangd\current
-          copy ~\scoop\apps\clangd\current\libclang.dll C:\Miniconda\envs\binder\DLLs
+          tree C:\Users\runneradmin\scoop\apps\clangd\
+          copy C:\Users\runneradmin\scoop\apps\clangd\current\libclang.dll C:\Miniconda\envs\binder\DLLs
 
       - name: "Generate bindings"
         shell: bash -l {0}
@@ -140,7 +140,7 @@ jobs:
 
       - name: "Install conda build"
         shell: pwsh
-        run: conda install -c conda-forge conda-build
+        run: conda install -c conda-forge conda-build anaconda-client
 
       - name: "Check conda"
         shell: pwsh
@@ -187,7 +187,7 @@ jobs:
 
       - name: "Install conda build"
         shell: bash -l {0}
-        run: conda install -c conda-forge  conda-build
+        run: conda install -c conda-forge  conda-build anaconda-client
 
       - name: "Check conda"
         shell: bash -l {0}
@@ -300,7 +300,7 @@ jobs:
 
       - name: "Install conda build"
         shell: pwsh
-        run: conda install -c conda-forge  conda-build
+        run: conda install -c conda-forge  conda-build anaconda-client
 
       - name: "Check conda"
         shell: pwsh
