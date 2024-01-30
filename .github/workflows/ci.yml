@@ -100,8 +100,8 @@ jobs:
           iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
           scoop bucket add main
           scoop install main/llvm
-          tree C:\Users\runneradmin\scoop\apps\llvm\
-          copy C:\Users\runneradmin\scoop\apps\llvm\current\bin\libclang.dll C:\Miniconda\envs\binder\DLLs
+          tree -a /f C:\Users\runneradmin\scoop\apps\llvm\
+          copy C:\Users\runneradmin\scoop\apps\llvm\17.0.6\bin\libclang.dll C:\Miniconda\envs\binder\DLLs
 
       - name: "Generate bindings"
         shell: bash -l {0}
