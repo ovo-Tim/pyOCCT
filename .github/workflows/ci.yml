@@ -97,7 +97,7 @@ jobs:
         shell: Powershell
         run: |
           set-executionpolicy remotesigned -scope currentuser
-          iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+          iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
           scoop bucket add main
           scoop install main/clangd
 
