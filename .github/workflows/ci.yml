@@ -13,7 +13,7 @@ on:
 
 jobs:
   generate_linux:
-    if: !contains(github.event.head_commit.message, 'skip ci')  and !contains(github.event.head_commit.message, 'only mac')
+    if: "!contains(github.event.head_commit.message, 'skip ci')  and !contains(github.event.head_commit.message, 'only mac')"
     name: Generate (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
@@ -62,7 +62,7 @@ jobs:
           path: src
 
   generate_win:
-    if: !contains(github.event.head_commit.message, 'skip ci')  and !contains(github.event.head_commit.message, 'only mac')
+    if: "!contains(github.event.head_commit.message, 'skip ci')  and !contains(github.event.head_commit.message, 'only mac')"
     name: Generate (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
@@ -221,7 +221,7 @@ jobs:
           path: conda
 
   generate_macos:
-    if: !contains(github.event.head_commit.message, 'skip ci') or contains(github.event.head_commit.message, 'only mac')
+    if: "!contains(github.event.head_commit.message, 'skip ci') or contains(github.event.head_commit.message, 'only mac')"
     name: Generate (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
