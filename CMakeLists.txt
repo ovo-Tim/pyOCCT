@@ -146,7 +146,7 @@ link_directories(${OpenCASCADE_LIBRARY_DIR})
 # VTK
 # ----------------------------------------------------------------------- #
 message(STATUS "Searching for VTK...")
-find_package(VTK REQUIRED CommonCore)
+find_package(VTK)
 
 # --------------------------------------------------------------------------- #
 # pyOCCT
