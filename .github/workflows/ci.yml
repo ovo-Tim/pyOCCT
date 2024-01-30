@@ -13,7 +13,7 @@ on:
 
 jobs:
   generate_linux:
-    if: "!contains(github.event.head_commit.message, 'skip ci')  && !contains(github.event.head_commit.message, 'only mac')"
+    if: "!contains(github.event.head_commit.message, 'skip ci')  && !contains(github.event.head_commit.message, 'only mac') && !contains(github.event.head_commit.message, 'only win')"
     name: Generate (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
@@ -93,15 +93,15 @@ jobs:
           conda info -a
           conda list
 
-      - name: "Install scoop and clang"
+      - name: "Install scoop and llvm"
         shell: Powershell
         run: |
           set-executionpolicy remotesigned -scope currentuser
           iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
           scoop bucket add main
-          scoop install main/clangd
-          tree C:\Users\runneradmin\scoop\apps\clangd\
-          copy C:\Users\runneradmin\scoop\apps\clangd\current\libclang.dll C:\Miniconda\envs\binder\DLLs
+          scoop install main/llvm
+          tree C:\Users\runneradmin\scoop\apps\llvm\
+          copy C:\Users\runneradmin\scoop\apps\llvm\current\bin\libclang.dll C:\Miniconda\envs\binder\DLLs
 
       - name: "Generate bindings"
         shell: bash -l {0}
@@ -223,7 +223,7 @@ jobs:
           path: conda
 
   generate_macos:
-    if: "!contains(github.event.head_commit.message, 'skip ci') || contains(github.event.head_commit.message, 'only mac')"
+    if: "!contains(github.event.head_commit.message, 'skip ci') || !contains(github.event.head_commit.message, 'only win')"
     name: Generate (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
