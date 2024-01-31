@@ -95,6 +95,7 @@ jobs:
         shell: bash -l {0}
         run: |
           conda activate binder
+          set CONDA_DLL_SEARCH_MODIFICATION_ENABLE=1
           python binder/run.py -c binder/config.txt -o src
 
       - name: "Upload bindings"
