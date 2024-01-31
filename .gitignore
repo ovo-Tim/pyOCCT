@@ -99,3 +99,5 @@ ENV/
 log.txt
 binder/all_includes.h
 src/
+
+.vscode

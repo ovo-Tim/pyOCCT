@@ -34,13 +34,13 @@ from OCCT.V3d import V3d_Viewer, V3d_TypeOfOrientation
 from OCCT.gp import gp_Pnt
 from qtpy import QtCore
 from qtpy.QtGui import QPalette, QIcon
-from qtpy.QtOpenGL import QGLWidget
-from qtpy.QtWidgets import QApplication, QMainWindow, QFrame, QVBoxLayout
+# from qtpy.QtOpenGL import QGLWidget
+from qtpy.QtWidgets import QApplication, QMainWindow, QFrame, QVBoxLayout, QWidget
 
 __all__ = ['ShapeViewerQt']
 
 
-class QOpenCascadeWidget(QGLWidget):
+class QOpenCascadeWidget(QWidget):
     """
     View for displaying shapes.
 
