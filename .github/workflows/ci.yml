@@ -2,14 +2,14 @@ name: Workflow
 on:
   workflow_dispatch:
 
-  push:
-    branches:
-      - '*'
-  pull_request:
-    branches:
-      - '*'
-  release:
-    types: [published]
+  # push:
+  #   branches:
+  #     - '*'
+  # pull_request:
+  #   branches:
+  #     - '*'
+  # release:
+  #   types: [published]
 
 jobs:
   generate_linux:
