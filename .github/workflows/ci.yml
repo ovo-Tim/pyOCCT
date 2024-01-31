@@ -132,7 +132,7 @@ jobs:
       - name: "Install conda build"
         run: |
             conda config --env --add channels conda-forge
-            conda install boa
+            conda install conda-build==3.27.0 boa
       - name: "Check conda"
         run: |
           conda info -a
@@ -178,7 +178,7 @@ jobs:
         shell: bash -l {0}
         run: |
             conda config --env --add channels conda-forge
-            conda install boa
+            conda install conda-build==3.27.0 boa
 
       - name: "Check conda"
         shell: bash -l {0}
