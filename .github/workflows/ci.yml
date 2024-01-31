@@ -121,8 +121,9 @@ jobs:
           sudo apt-get -q -y install libglu1-mesa-dev libgl1-mesa-dev libxi-dev libglfw3-dev libgles2-mesa-dev
 
       - name: "Prepare VM"
-        run: sudo rm -Rf /home/linuxbrew/
-
+        run: |
+            sudo rm -Rf /home/linuxbrew/
+            echo "$CONDA/bin" >> $GITHUB_PATH
       - name: "Clone pyOCCT"
         uses: actions/checkout@v3
 
