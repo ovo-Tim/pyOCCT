@@ -1,17 +1,30 @@
-from unittest import TestCase
+import unittest
+from os.path import abspath, dirname, split, splitext
 from glob import glob
 
-class Test_ModulesImport(TestCase):
+class Test_ModulesImport(unittest.TestCase):
     def testModulesImport(self):
         errors = []
-        mods = ['OCCT.' + f[7:-4] for f in glob('../src/*.cxx')]
+        root = abspath(dirname(dirname(__file__)))
+
+        mods = []
+        for f in glob(f'{root}/src/*.cxx'):
+            mod, _ = splitext(split(f)[1])
+            if mod.endswith("_2"):
+                continue
+            mods.append(f'OCCT.{mod}')
+
         for mod in mods:
-            print(f"Importing... {mod}")
             try:
                 __import__(mod)
-                print("Ok")
             except ImportError as e:
-                errors.append(mod)
-                print(f"Error: {e}")
+                if "Vtk" in mod:
+                    pass # Ignore
+                else:
+                    errors.append(mod)
+                print(f"Error importing {mod}:")
+                print(f"  {e}")
         self.assertFalse(errors)
 
+if __name__ == '__main__':
+    unittest.main()

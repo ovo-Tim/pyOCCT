@@ -82,6 +82,7 @@
 -class StdStorage_Bucket
 -class StdStorage_BucketIterator
 -class StdStorage_BucketOfPersistent
+-class StdObjMgt_MapOfInstantiators
 
 -class Storage_Bucket
 -class Storage_BucketIterator
@@ -684,6 +685,7 @@
 +header Aspect: xTypes.h
 +header AIS: AIS_PyInteractiveObject.hxx
 +header BinMXCAFDoc: BinTools_LocationSet.hxx
++header bind_NCollection_Array2: bind_NCollection_Array1.hxx
 
 +header BRepMesh: IMeshData_Wire.hxx
 
@@ -910,16 +912,22 @@
 # Excluded imports ------------------------------------------------------------
 -import Aspect: WNT
 -import AIS: WNT
+-import BiTgte: BRepFill
 -import Geom: GeomEvaluator
 -import Geom2d: Geom2dEvaluator
 -import GeomAdaptor: GeomEvaluator
 -import Geom2dAdaptor: Geom2dEvaluator
+-import GeomLib: Extrema
+-import IntWalk: IntPatch
 -import NCollection: gp
+-import math: Extrema
+-import math: IntPatch
 -import Prs3d: PrsMgr
 -import Select3D: SelectMgr
 -import StdObject: StdPersistent
 -import StdObject: ShapePersistent
 -import StdPersistent: ShapePersistent
+-import StepData: STEPControl
 -import XCAFDimTolObjects: XCAFDoc
 
 # Import guards ---------------------------------------------------------------
@@ -1032,6 +1040,20 @@
 +before_type OpenGl_BVHClipPrimitiveTrsfPersSet-->bind_BVH_Set<Standard_Real, 3>(mod, "BVH_Set_Standard_Real3", py::module_local());
 +before_type OpenGl_RaytraceGeometry-->bind_BVH_Geometry<Standard_ShortReal, 3>(mod, "BVH_Geometry_Standard_ShortReal3", py::module_local());
 
+# Some bind_NCollection_Array2 dont have a bind_NCollection_Array1 bind call
++before_type Extrema_Array2OfPOnSurfParams-->bind_NCollection_Array1<Extrema_POnSurfParams>(mod, "Extrema_Array1OfPOnSurfParams", py::module_local(false));
++before_type FEmTool_AssemblyTable-->bind_NCollection_Array1<opencascade::handle<TColStd_HArray1OfInteger>>(mod, "FEmTool_Array1AssemblyTable", py::module_local(false));
++before_type IGESBasic_Array2OfHArray1OfReal-->bind_NCollection_Array1<opencascade::handle<TColStd_HArray1OfReal>>(mod, "IGESBasic_Array1OfHArray1OfReal", py::module_local(false));
++before_type MAT2d_Array2OfConnexion-->bind_NCollection_Array1<opencascade::handle<MAT2d_Connexion>>(mod, "MAT2d_Array1OfConnexion", py::module_local(false));
++before_type StepElement_Array2OfCurveElementPurposeMember-->bind_NCollection_Array1<opencascade::handle<StepElement_CurveElementPurposeMember>>(mod, "StepElement_Array1OfCurveElementPurposeMember", py::module_local(false));
++before_type StepElement_Array2OfSurfaceElementPurpose-->bind_NCollection_Array1<StepElement_SurfaceElementPurpose>(mod, "StepElement_Array1OfSurfaceElementPurpose", py::module_local(false));
++before_type StepElement_Array2OfSurfaceElementPurposeMember-->bind_NCollection_Array1<opencascade::handle<StepElement_SurfaceElementPurposeMember>>(mod, "StepElement_Array1OfSurfaceElementPurposeMember", py::module_local(false));
++before_type StepGeom_Array2OfSurfacePatch-->bind_NCollection_Array1<opencascade::handle<StepGeom_SurfacePatch>>(mod, "StepGeom_Array1OfSurfacePatch", py::module_local(false));
++before_type IGESBasic_Array2OfHArray1OfReal-->bind_NCollection_Array1<opencascade::handle<TColStd_HArray1OfReal>>(mod, "IGESBasic_Array1OfHArray1OfReal", py::module_local(false));
++before_type TColGeom_Array2OfBezierSurface-->bind_NCollection_Array1<opencascade::handle<Geom_BezierSurface>>(mod, "TColGeom_Array1OfBezierSurface", py::module_local(false));
++before_type TopTrans_Array2OfOrientation-->bind_NCollection_Array1<TopAbs_Orientation>(mod, "TopTrans_Array1OfOrientation", py::module_local(false));
+
+#+before_type NCollection_Array2<TheItemType>-->bind_NCollection_Array1<TheItemType>(mod, name + "_Array1", py::module_local(true));
 #+before_type NCollection_Sequence<TheItemType>-->using Iterator = typename NCollection_Sequence<TheItemType>::Iterator;
 
 +before_type Poly_ArrayOfNodes-->bind_NCollection_AliasedArray<16>(mod, "NCollection_AliasedArray16", py::module_local());
@@ -1047,6 +1069,8 @@
 
 +before_type StdPersistent_DataXtd_Constraint-->bind_StdObjMgt_Attribute<TDataXtd_Constraint>(mod, "StdObjMgt_Attribute_TDataXtd_Constraint", py::module_local());
 +before_type StdPersistent_DataXtd_PatternStd-->bind_StdObjMgt_Attribute<TDataXtd_PatternStd>(mod, "StdObjMgt_Attribute_TDataXtd_PatternStd", py::module_local());
+
++before_type StdObjMgt_MapOfInstantiators-->bind_NCollection_DataMap<TCollection_AsciiString, opencascade::handle<StdObjMgt_Persistent>>(mod, "StdObjMgt_DataMapOfInstantiators", py::module_local(false));
 
 # Extra text ------------------------------------------------------------------
 +after_type AIS_Line-->cls_AIS_Line.def("Points", [](AIS_Line &self, opencascade::handle<Geom_Point> & thePStart, opencascade::handle<Geom_Point> & thePEnd) {self.Points(thePStart, thePEnd); return std::tuple<opencascade::handle<Geom_Point>, opencascade::handle<Geom_Point>>(thePStart, thePEnd); }, "Returns the starting point thePStart and the end point thePEnd of the line set by SetPoints.", py::arg("thePStart"), py::arg("thePEnd"));

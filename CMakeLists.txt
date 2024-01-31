@@ -66,8 +66,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 
-set(OpenCASCADE_DIR "/home/jrm/micromamba/envs/pyocct/lib/cmake/opencascade")
-set(VTK_DIR "/home/jrm/micromamba/envs/pyocct/lib/cmake/vtk-9.2")
+#set(OpenCASCADE_DIR "/home/jrm/micromamba/envs/pyocct/lib/cmake/opencascade")
+#set(VTK_DIR "/home/jrm/micromamba/envs/pyocct/lib/cmake/vtk-9.2")
 
 # --------------------------------------------------------------------------- #
 # PYTHON and PYBIND11
