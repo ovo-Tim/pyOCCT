@@ -159,7 +159,7 @@ jobs:
         run: |
           mkdir conda
           sed -i "1i{% set python = '${{ matrix.python-version }}' %}" ./ci/meta.yaml
-          conda mambabuild build ci -c conda-forge --python ${{ matrix.python-version }} --output-folder conda --token ${{ secrets.ANACONDA_TOKEN }} --no-test
+          conda mambabuild ci -c conda-forge --python ${{ matrix.python-version }} --output-folder conda --token ${{ secrets.ANACONDA_TOKEN }} --no-test
 
       - name: "Upload conda package"
         uses: actions/upload-artifact@v3
@@ -214,7 +214,7 @@ jobs:
           mkdir conda
           source activate
           sed -i "1i{% set python = '${{ matrix.python-version }}' %}" ./ci/meta.yaml
-          conda mambabuild build  ci -c conda-forge --python ${{ matrix.python-version }} --output-folder conda --token ${{ secrets.ANACONDA_TOKEN }} --no-test
+          conda mambabuild ci -c conda-forge --python ${{ matrix.python-version }} --output-folder conda --token ${{ secrets.ANACONDA_TOKEN }} --no-test
 
       - name: "Upload conda package"
         uses: actions/upload-artifact@v3
@@ -324,7 +324,7 @@ jobs:
           mkdir conda
           conda activate
           sed -i "1i{% set python = '${{ matrix.python-version }}' %}" ./ci/meta.yaml
-          conda mambabuild build ci -c conda-forge --python ${{ matrix.python-version }} --output-folder conda --token ${{ secrets.ANACONDA_TOKEN }} --no-test
+          conda mambabuild ci -c conda-forge --python ${{ matrix.python-version }} --output-folder conda --token ${{ secrets.ANACONDA_TOKEN }} --no-test
 
       - name: "Upload conda package"
         uses: actions/upload-artifact@v3
