@@ -1,0 +1,44 @@
+context: {}
+package:
+
+  name: pyocct
+  version: 7.8.0.0
+
+source:
+  path: ../
+
+build:
+  number: 100
+
+requirements:
+  build:
+    - sel(win): '{{ compiler("cxx") }}'
+    - cmake
+    - ninja
+    - rapidjson
+    - sel(linux): vtk * egl*
+    - sel(linux): '{{ cdt("mesa-libgl-devel") }}'
+    - sel(linux): '{{ cdt("libxi-devel") }}'
+    - sel(linux): '{{ cdt("libxext-devel") }}'
+
+  host:
+    - python
+    - pybind11
+    - occt ==7.8.0
+    - tbb-devel
+
+  run:
+    - python
+    - occt ==7.8.0
+
+test:
+  source_files:
+    - test
+
+about:
+  home: https://github.com/trelau/pyOCCT
+  license: LGPL2.1
+  license_family: LGPL
+  summary: Python bindings for OpenCASCADE.
+  description: Python bindings for OpenCASCADE geometry kernel.
+
