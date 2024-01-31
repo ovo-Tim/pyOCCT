@@ -73,7 +73,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # PYTHON and PYBIND11
 # --------------------------------------------------------------------------- #
 message(STATUS "Searching for Python and pybind11...")
-find_package(Python COMPONENTS Interpreter Development REQUIRED)
+find_package(Python "${PYBIND_PYTHON_VERSION}" COMPONENTS Interpreter Development REQUIRED)
 find_package(pybind11 CONFIG REQUIRED)
 
 
