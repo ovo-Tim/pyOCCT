@@ -121,18 +121,15 @@ jobs:
           sudo apt-get -q -y install libglu1-mesa-dev libgl1-mesa-dev libxi-dev libglfw3-dev libgles2-mesa-dev
 
       - name: "Prepare VM"
-        run: |
-            sudo rm -Rf /home/linuxbrew/
-            echo "$CONDA/bin" >> $GITHUB_PATH
+        run: sudo rm -Rf /home/linuxbrew/
+
       - name: "Clone pyOCCT"
         uses: actions/checkout@v3
 
       - name: "Install conda build"
-        shell: pwsh
         run: conda install -c conda-forge boa
 
       - name: "Check conda"
-        shell: pwsh
         run: |
           conda info -a
           conda list
@@ -144,9 +141,9 @@ jobs:
           path: src
 
       - name: "Run conda build"
-        shell: pwsh
         run: |
           mkdir conda
+          ls $CONDA
           boa build ci -c conda-forge --python ${{ matrix.python-version }} --output-folder conda
 
       - name: "Upload conda package"
