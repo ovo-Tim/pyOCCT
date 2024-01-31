@@ -124,7 +124,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ['ubuntu-latest']
-        python-version: ['3.8', '3.9', '3.10', '3.11']
+        python-version: ['3.9', '3.10', '3.11', '3.12']
     steps:
 
       - name: "Install OpenGL"
@@ -140,7 +140,7 @@ jobs:
 
       - name: "Install conda build"
         shell: pwsh
-        run: conda install -c conda-forge conda-build anaconda-client
+        run: conda install -c conda-forge conda-build anaconda-client boa
 
       - name: "Check conda"
         shell: pwsh
@@ -159,7 +159,7 @@ jobs:
         run: |
           mkdir conda
           sed -i "1i{% set python = '${{ matrix.python-version }}' %}" ./ci/meta.yaml
-          conda build ci -c conda-forge --python ${{ matrix.python-version }} --output-folder conda --token ${{ secrets.ANACONDA_TOKEN }} --no-test
+          boa build ci -c conda-forge --python ${{ matrix.python-version }} --output-folder conda --token ${{ secrets.ANACONDA_TOKEN }} --no-test
 
       - name: "Upload conda package"
         uses: actions/upload-artifact@v3
@@ -176,7 +176,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ['windows-latest']
-        python-version: ['3.8', '3.9', '3.10', '3.11']
+        python-version: ['3.9', '3.10', '3.11', '3.12']
     steps:
 
       - name: "Clone pyOCCT"
@@ -214,7 +214,7 @@ jobs:
           mkdir conda
           source activate
           sed -i "1i{% set python = '${{ matrix.python-version }}' %}" ./ci/meta.yaml
-          conda build  ci -c conda-forge --python ${{ matrix.python-version }} --output-folder conda --token ${{ secrets.ANACONDA_TOKEN }} --no-test
+          boa build  ci -c conda-forge --python ${{ matrix.python-version }} --output-folder conda --token ${{ secrets.ANACONDA_TOKEN }} --no-test
 
       - name: "Upload conda package"
         uses: actions/upload-artifact@v3
