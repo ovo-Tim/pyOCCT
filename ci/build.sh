@@ -18,7 +18,7 @@ cmake -G "Ninja" \
   -DCMAKE_SYSTEM_PREFIX_PATH="$PREFIX" \
   "${CMAKE_PLATFORM_FLAGS[@]}" \
   -DCMAKE_BUILD_TYPE="Release" \
-  -DPython_ROOT_DIR="$BUILD_PREFIX" \
+  -DPython_ROOT_DIR="$PREFIX" \
   -DPYBIND11_PYTHON_VERSION="$PY_VER" \
   ..
 

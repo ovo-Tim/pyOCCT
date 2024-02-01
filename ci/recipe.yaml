@@ -16,6 +16,7 @@ requirements:
     - cmake
     - ninja
     - rapidjson
+    - python
     - sel(linux): vtk * egl*
     - sel(linux): '{{ cdt("mesa-libgl-devel") }}'
     - sel(linux): '{{ cdt("libxi-devel") }}'
