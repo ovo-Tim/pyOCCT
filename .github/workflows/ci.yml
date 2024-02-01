@@ -145,15 +145,12 @@ jobs:
           path: src
 
       - name: "Run conda build"
-        run: |
-          mkdir conda
-          boa build ci --python ${{ matrix.python-version }} --output-folder conda
-
+        run: boa build ci --python ${{ matrix.python-version }}
       - name: "Upload conda package"
         uses: actions/upload-artifact@v3
         with:
           name: pyocct-py${{ matrix.python-version }}_${{ matrix.os }}
-          path: conda
+          path: /usr/share/miniconda/conda-bld/linux-64
 
   build_win:
     if: "!contains(github.event.head_commit.message, 'skip ci')"
