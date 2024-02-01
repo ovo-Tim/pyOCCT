@@ -54,6 +54,7 @@ jobs:
         run: |
           conda activate binder
           python binder/run.py -c binder/config.txt -o src
+          echo log.txt
 
       - name: "Upload bindings"
         uses: actions/upload-artifact@v3
