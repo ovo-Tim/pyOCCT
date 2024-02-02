@@ -37,20 +37,20 @@ jobs:
           submodules: 'recursive'
 
       - name: "Configure conda"
-        shell: bash
+        # shell: bash
         run: |
           conda init --all
           conda env create -f binder/environment.yml
 
       - name: "Check conda"
-        shell: bash
+        # shell: bash
         run: |
           conda activate binder
           conda info -a
           conda list
 
       - name: "Generate bindings"
-        shell: bash
+        # shell: bash
         run: |
           conda activate binder
           python binder/run.py -c binder/config.txt -o src
