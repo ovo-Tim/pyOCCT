@@ -18,9 +18,8 @@ cmake -G "Ninja" \
   -DCMAKE_SYSTEM_PREFIX_PATH="$PREFIX" \
   "${CMAKE_PLATFORM_FLAGS[@]}" \
   -DCMAKE_BUILD_TYPE="Release" \
-  -DPython_FIND_VIRTUALENV=FIRST \
-  -DPython_FIND_STRATEGY=LOCATION \
-  -DPython_FIND_FRAMEWORK=NEVER \
+  -DPython_ROOT_DIR="$PREFIX" \
+  -DPYBIND11_PYTHON_VERSION="$PY_VER" \
   ..
 
 if [[ ${HOST} =~ .*linux.* ]]; then
