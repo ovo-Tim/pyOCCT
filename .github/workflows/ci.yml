@@ -147,7 +147,7 @@ jobs:
           cd build
           cmake ..
           make
-          sudo make install
+          sudo make install -j ${CPU_COUNT}
 
       - name: "Build OCCT"
         run: |
@@ -166,7 +166,7 @@ jobs:
           mkdir build
           cd build
           sudo cmake .. -DUSE_VTK=ON -D3RDPARTY_VTK_INCLUDE_DIR=/usr/include/vtk/
-          sudo make install
+          sudo make install -j ${CPU_COUNT}
           
 
       - name: "Clone pyOCCT"
