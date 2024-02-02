@@ -63,7 +63,8 @@ jobs:
           path: src
 
   generate_win:
-    if: "!contains(github.event.head_commit.message, 'skip ci')  && !contains(github.event.head_commit.message, 'only mac') && !contains(github.event.head_commit.message, 'only linux')"
+    # if: "!contains(github.event.head_commit.message, 'skip ci')  && !contains(github.event.head_commit.message, 'only mac') && !contains(github.event.head_commit.message, 'only linux')"
+    if: false
     name: Generate (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
@@ -256,7 +257,8 @@ jobs:
           path: conda
 
   generate_macos:
-    if: "!contains(github.event.head_commit.message, 'skip ci') && !contains(github.event.head_commit.message, 'only win') && !contains(github.event.head_commit.message, 'only linux')"
+    # if: "!contains(github.event.head_commit.message, 'skip ci') && !contains(github.event.head_commit.message, 'only win') && !contains(github.event.head_commit.message, 'only linux')"
+    if: false
     name: Generate (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
