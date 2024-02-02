@@ -139,7 +139,7 @@ jobs:
       - name: "Build VTK"
         run: |
           cd ~
-          sudo apt install -y build-essential cmake git unzip qt5-default libqt5opengl5-dev libqt5x11extras5-dev libeigen3-dev libboost-all-dev libglew-dev libglvnd-dev
+          sudo apt install -y build-essential cmake git unzip libqt5opengl5-dev libqt5x11extras5-dev libeigen3-dev libboost-all-dev libglew-dev libglvnd-dev
           git clone https://gitlab.kitware.com/vtk/vtk.git
           cd vtk
           mkdir build
