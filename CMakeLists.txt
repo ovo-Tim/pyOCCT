@@ -67,7 +67,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 
-#set(OpenCASCADE_DIR "/home/jrm/micromamba/envs/pyocct/lib/cmake/opencascade")
+# set(OpenCASCADE_INCLUDE_DIR "/tmp/下载/OCCT-7_8_0/include/opencascade/")
+# set(OpenCASCADE_LIBRARY_DIR "/tmp/下载/OCCT-7_8_0/lin64/gcc/lib/")
 #set(VTK_DIR "/home/jrm/micromamba/envs/pyocct/lib/cmake/vtk-9.2")
 
 # --------------------------------------------------------------------------- #

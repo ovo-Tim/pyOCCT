@@ -54,7 +54,7 @@ jobs:
         run: |
           conda activate binder
           python binder/run.py -c binder/config.txt -o src
-          echo log.txt
+          cat log.txt
 
       - name: "Upload bindings"
         uses: actions/upload-artifact@v3
@@ -63,7 +63,7 @@ jobs:
           path: src
 
   generate_win:
-    if: "!contains(github.event.head_commit.message, 'skip ci')  && !contains(github.event.head_commit.message, 'only mac')"
+    if: "!contains(github.event.head_commit.message, 'skip ci')  && !contains(github.event.head_commit.message, 'only mac') && !contains(github.event.head_commit.message, 'only linux')"
     name: Generate (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
@@ -135,6 +135,38 @@ jobs:
 
       - name: "Prepare VM"
         run: sudo rm -Rf /home/linuxbrew/
+
+      - name: "Build VTK"
+        run: |
+          cd ~
+          sudo apt install -y build-essential cmake git unzip qt5-default libqt5opengl5-dev libqt5x11extras5-dev libeigen3-dev libboost-all-dev libglew-dev libglvnd-dev
+          git clone https://gitlab.kitware.com/vtk/vtk.git
+          cd vtk
+          mkdir build
+          cd build
+          cmake ..
+          make
+          sudo make install
+
+      - name: "Build OCCT"
+        run: |
+          cd ~
+          sudo apt-get install software-properties-common
+          sudo apt-get install libtool autoconf automake gfortran gdebi
+          sudo apt-get install gcc-multilib libxi-dev libxmu-dev libxmu-headers
+          sudo apt-get install libx11-dev mesa-common-dev libglu1-mesa-dev
+          sudo apt-get install libfontconfig1-dev
+          sudo apt-get install libfreetype6 libfreetype6-dev
+          sudo apt-get install tcl tcl-dev tk tk-dev
+
+          wget https://github.com/Open-Cascade-SAS/OCCT/archive/refs/tags/V7_8_0.tar.gz
+          tar -xzf V7_8_0.tar.gz
+          cd OCCT-V7_8_0
+          mkdir build
+          cd build
+          sudo cmake .. -DUSE_VTK=ON -D3RDPARTY_VTK_INCLUDE_DIR=/usr/include/vtk/
+          sudo make install
+          
 
       - name: "Clone pyOCCT"
         uses: actions/checkout@v3
@@ -224,7 +256,7 @@ jobs:
           path: conda
 
   generate_macos:
-    if: "!contains(github.event.head_commit.message, 'skip ci') && !contains(github.event.head_commit.message, 'only win')"
+    if: "!contains(github.event.head_commit.message, 'skip ci') && !contains(github.event.head_commit.message, 'only win') && !contains(github.event.head_commit.message, 'only linux')"
     name: Generate (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
