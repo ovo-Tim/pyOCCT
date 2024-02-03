@@ -21,7 +21,7 @@ from OCCT.STEPControl import STEPControl_Reader
 from OCCT.TopAbs import TopAbs_FACE
 from OCCT.TopExp import TopExp_Explorer
 
-from OCCT.Visualization.WxViewer import ShapeViewerWx
+from OCCT.Display.WxViewer import ShapeViewerWx
 
 # Read the file and get the shape
 reader = STEPControl_Reader()

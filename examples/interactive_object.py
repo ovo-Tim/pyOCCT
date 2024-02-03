@@ -4,11 +4,11 @@ from OCCT.Prs3d import Prs3d_Arrow
 from OCCT.gp import gp_Pnt, gp_Dir, gp_Ax2
 
 try:
-    from OCCT.Visualization.WxViewer import ShapeViewerWx as ShapeViewer
+    from OCCT.Display.WxViewer import ShapeViewerWx as ShapeViewer
 
     use_wx = True
 except ModuleNotFoundError:
-    from OCCT.Visualization.QtViewer import ShapeViewerQt as ShapeViewer
+    from OCCT.Display.QtViewer import ShapeViewerQt as ShapeViewer
 
     use_wx = False
 
