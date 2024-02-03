@@ -1053,7 +1053,7 @@
 +before_type TColGeom_Array2OfBezierSurface-->bind_NCollection_Array1<opencascade::handle<Geom_BezierSurface>>(mod, "TColGeom_Array1OfBezierSurface", py::module_local(false));
 +before_type TopTrans_Array2OfOrientation-->bind_NCollection_Array1<TopAbs_Orientation>(mod, "TopTrans_Array1OfOrientation", py::module_local(false));
 
-#+before_type NCollection_Array2<TheItemType>-->bind_NCollection_Array1<TheItemType>(mod, name + "_Array1", py::module_local(true));
++before_type NCollection_Array2<TheItemType>-->bind_NCollection_Array1<TheItemType>(mod, name + "_Array1", py::module_local(true));
 #+before_type NCollection_Sequence<TheItemType>-->using Iterator = typename NCollection_Sequence<TheItemType>::Iterator;
 
 +before_type Poly_ArrayOfNodes-->bind_NCollection_AliasedArray<16>(mod, "NCollection_AliasedArray16", py::module_local());
