@@ -11,7 +11,7 @@ Python programming language.
 ## Why pyOCCT2 exists?
 [pyOCCT](https://github.com/trelau/pyOCCT) has been [discontinued support](https://github.com/trelau/pyOCCT/issues/101), but it's still meaningful. We want to countinue supporting it. Thanks to [frmdstryr](https://github.com/frmdstryr), he is still keeping pyOCCT up to date.(His repo is [here](https://github.com/frmdstryr/pyOCCT), it's also our upstream.)
 
-pyOCCT2 added some new features, it's more close to [pythonOCC](https://github.com/tpaviot/pythonocc-core).
+pyOCCT2 added some new features, it's more close to [pythonOCC](https://github.com/tpaviot/pythonocc-core). And it shoulds be compatible with pythonocc.
 
 ## What is the difference between pyOCCT and pythonOCC?
 pyOCCT provide interface that closer to native and support more module. Because of pyBind11, it's more convenient to maintenance. But pythonocc has a larger user base so you will likely find more people to collaborate with.

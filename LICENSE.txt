@@ -158,7 +158,7 @@ warranty; and distribute a copy of this License along with the
 Library.
 
   You may charge a fee for the physical act of transferring a copy,
-and you may at your option offer warranty protection in exchange for a
+and you may at your option offer warranty protection in Extend for a
 fee.
 
 

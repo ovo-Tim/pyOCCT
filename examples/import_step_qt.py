@@ -20,7 +20,7 @@
 from OCCT.Graphic3d import Graphic3d_NOM_ALUMINIUM
 from OCCT.STEPControl import STEPControl_Reader
 
-from OCCT.Display.QtViewer import ShapeViewerQt
+from OCCT.Display._QtViewer import ShapeViewerQt
 
 reader = STEPControl_Reader()
 reader.ReadFile('./models/compressor.step')
