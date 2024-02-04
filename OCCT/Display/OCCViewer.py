@@ -110,6 +110,7 @@ class Viewer3d():
         # Create viewer and view
         self.Viewer = V3d_Viewer(self._graphics_driver)
         self.View = self.Viewer.CreateView()
+        self.Context = AIS_InteractiveContext(self.Viewer)
         
         self.camera = self.View.Camera()
         self.struc_mgr = self.Viewer.StructureManager()
@@ -185,7 +186,7 @@ class Viewer3d():
             self.wind.Map()
 
         # AIS interactive context
-        self.Context = AIS_InteractiveContext(self.Viewer)
+        
         self.Context.SetAutomaticHilight(True)
 
         self.Viewer.SetDefaultLights()

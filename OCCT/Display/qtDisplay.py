@@ -84,8 +84,8 @@ class qtViewer3d(qtBaseViewer):
         
         self._select_solid = False
 
-        self.InitDriver()
-        self.set_highlight()
+        # self.InitDriver()
+        # self.set_highlight()
 
         self.mouse_3d_pos = [0,0,0]
 
@@ -128,6 +128,7 @@ class qtViewer3d(qtBaseViewer):
             ord("G"): self.select_solid,
         }
         self.createCursors()
+        self.set_highlight()
 
     def createCursors(self):
         module_pth = os.path.abspath(os.path.dirname(__file__))
