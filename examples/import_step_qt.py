@@ -21,6 +21,8 @@ from OCCT.Graphic3d import Graphic3d_NOM_ALUMINIUM
 from OCCT.STEPControl import STEPControl_Reader
 
 from OCCT.Display._QtViewer import ShapeViewerQt
+from OCCT.AIS import AIS_Shape
+from OCCT.TopAbs import TopAbs_SOLID
 
 reader = STEPControl_Reader()
 reader.ReadFile('./models/compressor.step')
@@ -28,5 +30,6 @@ reader.TransferRoots()
 shape = reader.OneShape()
 
 v = ShapeViewerQt()
+v._the_view.my_context.Activate(AIS_Shape.SelectionMode_(TopAbs_SOLID), True)
 v.display_shape(shape, rgb=(0.5, 0.5, 0.5), material=Graphic3d_NOM_ALUMINIUM)
 v.start()

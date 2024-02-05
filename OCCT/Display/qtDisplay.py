@@ -15,7 +15,7 @@ from OCCT.TopAbs import (
 )
 from OCCT.Display import OCCViewer
 from OCCT.Prs3d import  Prs3d_TypeOfHighlight_LocalDynamic, Prs3d_TypeOfHighlight_LocalSelected, Prs3d_TypeOfHighlight_Dynamic, Prs3d_TypeOfHighlight_Selected
-from OCCT.Quantity import Quantity_NOC_LIGHTSEAGREEN, Quantity_NOC_LIGHTSKYBLUE, Quantity_Color
+from OCCT.Quantity import Quantity_NOC_LIGHTSEAGREEN, Quantity_NOC_LIGHTSKYBLUE, Quantity_Color, Quantity_TOC_RGB
 from OCCT.Geom import Geom_Line, Geom_Plane
 from OCCT.GeomAPI import GeomAPI_IntCS
 
@@ -39,11 +39,15 @@ class qtBaseViewer(QtWidgets.QWidget):
         self.setAttribute(QtCore.Qt.WA_NativeWindow)
         self.setAttribute(QtCore.Qt.WA_PaintOnScreen)
         self.setAttribute(QtCore.Qt.WA_NoSystemBackground)
-
-        self.setAutoFillBackground(False)
-
+        self.setAutoFillBackground(True)
         self.setContentsMargins(0,0,0,0)
 
+        self.setBackgroundColor((0.5, 0.5, 0.5))
+
+    def setBackgroundColor(self, color: tuple[float, float, float]):
+        self.background_color = color
+        self.setStyleSheet(f"background-color: rgb{self.background_color};")
+        self._display.View.SetBackgroundColor(Quantity_TOC_RGB, *color)
 
 class qtViewer3d(qtBaseViewer):
 
@@ -315,6 +319,8 @@ class qtViewer3d(qtBaseViewer):
                 
                 self._display.MoveTo(*off_mouse_pos) # Change by potato-pythonocc forum.qt.io/topic/147605/get-incorrect-widget-size-by-window-handle
                 self.cursor = "arrow"
+
+            # print(off_mouse_pos)
         except Exception as e:
             logging.error(e)
 

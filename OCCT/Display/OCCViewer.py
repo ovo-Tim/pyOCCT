@@ -631,9 +631,9 @@ class Viewer3d():
         self.Context.Deactivate()
         topo_level = next(self.modes)
         if mode is None:
-            self.Context.Activate(AIS_Shape.SelectionMode(topo_level), True)
+            self.Context.Activate(AIS_Shape.SelectionMode_(topo_level), True)
         else:
-            self.Context.Activate(AIS_Shape.SelectionMode(mode), True)
+            self.Context.Activate(AIS_Shape.SelectionMode_(mode), True)
         self.Context.UpdateSelected(True)
 
     def SetSelectionModeVertex(self):
