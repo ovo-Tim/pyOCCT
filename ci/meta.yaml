@@ -1,12 +1,12 @@
 package:
-  name: pyocct
+  name: pyocct2
   version: 7.8.0.0
 
 source:
   path: ../
 
 build:
-  number: 2
+  number: 0
 
 requirements:
   build:
@@ -35,7 +35,7 @@ test:
     - test
 
 about:
-  home: https://github.com/trelau/pyOCCT
+  home: https://github.com/ovo-Tim/pyOCCT2
   license: LGPL2.1
   license_family: LGPL
   summary: Python bindings for OpenCASCADE.
