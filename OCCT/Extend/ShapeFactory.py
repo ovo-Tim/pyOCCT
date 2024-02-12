@@ -63,7 +63,7 @@ from OCCT.gp import (
 )
 from OCCT.BRepMesh import BRepMesh_IncrementalMesh
 
-from OCC.Extend.TopologyUtils import is_edge, is_face
+from OCCT.Extend.TopologyUtils import is_edge, is_face
 
 
 #

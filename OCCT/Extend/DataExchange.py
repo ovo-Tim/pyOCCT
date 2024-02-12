@@ -19,9 +19,9 @@ import os
 
 from OCCT.TopoDS import TopoDS_Shape
 from OCCT.TopAbs import TopAbs_SOLID, TopAbs_SHELL, TopAbs_COMPOUND
-from OCCT.BRepTools import breptools
+from OCCT.BRepTools import BRepTools
 from OCCT.BRepMesh import BRepMesh_IncrementalMesh
-from OCCT.StlAPI import stlapi, StlAPI_Writer
+from OCCT.StlAPI import StlAPI, StlAPI_Writer
 from OCCT.BRep import BRep_Builder
 from OCCT.gp import gp_Pnt, gp_Dir, gp_Pnt2d
 from OCCT.Bnd import Bnd_Box2d
@@ -60,16 +60,14 @@ from OCCT.RWMesh import (
     RWMesh_CoordinateSystem_posYfwd_posZup,
     RWMesh_CoordinateSystem_negZfwd_posYup,
 )
-from OCCT.UnitsMethods import unitsmethods
+from OCCT.UnitsMethods import UnitsMethods
 
-from OCC.Extend.TopologyUtils import (
+from OCCT.Extend.TopologyUtils import (
     discretize_edge,
     get_sorted_hlr_edges,
     list_of_shapes_to_compound,
 )
 from OCCT.AIS import AIS_Shape
-
-from OCCT.BRepTools import breptools
 
 try:
     import svgwrite
@@ -512,7 +510,7 @@ def read_stl_file(filename):
         raise FileNotFoundError(f"{filename} not found.")
 
     the_shape = TopoDS_Shape()
-    stlapi.Read(the_shape, filename)
+    StlAPI.Read(the_shape, filename)
 
     if the_shape.IsNull():
         raise AssertionError("Shape is null.")
@@ -762,7 +760,7 @@ def write_brep_file(shapes, filename):
     if isinstance(shapes, list):
         shapes = _create_Compound(shapes)
 
-    status = breptools.Write(shapes, filename)
+    status = BRepTools.Write(shapes, filename)
     if not status:
         raise AssertionError("Not done.")
     if not os.path.isfile(filename):
@@ -778,7 +776,7 @@ def write_ply_file(a_shape, ply_filename):
     shape_tool = XCAFDoc_DocumentTool.ShapeTool(doc.Main())
 
     # mesh shape
-    breptools.Clean(a_shape)
+    BRepTools.Clean(a_shape)
     msh_algo = BRepMesh_IncrementalMesh(a_shape, True)
     msh_algo.Perform()
 
@@ -808,10 +806,10 @@ def write_obj_file(a_shape, obj_filename):
     """ocaf based ply exporter"""
     # create a document
     doc = TDocStd_Document("pythonocc-doc-obj-export")
-    shape_tool = XCAFDoc_DocumentTool.ShapeTool(doc.Main())
+    shape_tool = XCAFDoc_DocumentTool.ShapeTool_(doc.Main())
 
     # mesh shape
-    breptools.Clean(a_shape)
+    BRepTools.Clean(a_shape)
     msh_algo = BRepMesh_IncrementalMesh(a_shape, True)
     msh_algo.Perform()
 
@@ -828,7 +826,7 @@ def write_obj_file(a_shape, obj_filename):
     # apply a scale factor of 0.001 to mimic conversion from m to mm
     csc = rwobj_writer.ChangeCoordinateSystemConverter()
 
-    system_unit_factor = unitsmethods.GetCasCadeLengthUnit() * 0.001
+    system_unit_factor = UnitsMethods.GetCasCadeLengthUnit() * 0.001
     csc.SetInputLengthUnit(system_unit_factor)
     csc.SetOutputLengthUnit(system_unit_factor)
     csc.SetInputCoordinateSystem(RWMesh_CoordinateSystem_posYfwd_posZup)
@@ -892,7 +890,7 @@ def write_gltf_file(a_shape, gltf_filename):
     shape_tool = XCAFDoc_DocumentTool.ShapeTool(doc.Main())
 
     # mesh shape
-    breptools.Clean(a_shape)
+    BRepTools.Clean(a_shape)
     msh_algo = BRepMesh_IncrementalMesh(a_shape, True)
     msh_algo.Perform()
 

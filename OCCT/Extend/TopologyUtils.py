@@ -36,13 +36,13 @@ from OCCT.TopAbs import (
     TopAbs_ShapeEnum,
     TopAbs_Orientation,
 )
-from OCCT.TopExp import TopExp_Explorer, topexp
+from OCCT.TopExp import TopExp_Explorer, TopExp
 from OCCT.TopTools import (
     TopTools_ListIteratorOfListOfShape,
     TopTools_IndexedDataMapOfShapeListOfShape,
 )
 from OCCT.TopoDS import (
-    topods,
+    TopoDS,
     TopoDS_Wire,
     TopoDS_Vertex,
     TopoDS_Edge,
@@ -97,7 +97,7 @@ class WireExplorer:
     def _loop_topo(self, edges: Optional[bool] = True) -> Iterator[Any]:
         if self.done:
             self._reinitialize()
-        topology_type = topods.Edge if edges else topods.Vertex
+        topology_type = TopoDS.Edge if edges else TopoDS.Vertex
         seq = []
 
         while self.wire_explorer.More():
@@ -160,14 +160,14 @@ class TopologyExplorer:
         # the topology_factory dicts maps topology types and functions that can
         # create this topology
         self.topology_factory = {
-            TopAbs_VERTEX: topods.Vertex,
-            TopAbs_EDGE: topods.Edge,
-            TopAbs_FACE: topods.Face,
-            TopAbs_WIRE: topods.Wire,
-            TopAbs_SHELL: topods.Shell,
-            TopAbs_SOLID: topods.Solid,
-            TopAbs_COMPOUND: topods.Compound,
-            TopAbs_COMPSOLID: topods.CompSolid,
+            TopAbs_VERTEX: TopoDS.Vertex,
+            TopAbs_EDGE: TopoDS.Edge,
+            TopAbs_FACE: TopoDS.Face,
+            TopAbs_WIRE: TopoDS.Wire,
+            TopAbs_SHELL: TopoDS.Shell,
+            TopAbs_SOLID: TopoDS.Solid,
+            TopAbs_COMPOUND: TopoDS.Compound,
+            TopAbs_COMPSOLID: TopoDS.CompSolid,
         }
 
     def _loop_topo(
@@ -327,7 +327,7 @@ class TopologyExplorer:
         topo_set = set()
         topo_set_hash_codes = {}
         _map = TopTools_IndexedDataMapOfShapeListOfShape()
-        topexp.MapShapesAndAncestors(
+        TopExp.MapShapesAndAncestors(
             self.my_shape, topology_type_1, topology_type_2, _map
         )
         results = _map.FindFromKey(topological_entity)
@@ -376,7 +376,7 @@ class TopologyExplorer:
         """
         topo_set = set()
         _map = TopTools_IndexedDataMapOfShapeListOfShape()
-        topexp.MapShapesAndAncestors(
+        TopExp.MapShapesAndAncestors(
             self.my_shape, topology_type_1, topology_type_2, _map
         )
         results = _map.FindFromKey(topological_entity)
@@ -506,7 +506,7 @@ def dump_topology_to_string(
     brt = BRep_Tool()
     s = shape.ShapeType()
     if s == TopAbs_VERTEX:
-        pnt = brt.Pnt(topods.Vertex(shape))
+        pnt = brt.Pnt(TopoDS.Vertex(shape))
         print(".." * level + f"<Vertex {hash(shape)}: {pnt.X()} {pnt.Y()} {pnt.Z()}>\n")
     else:
         print(".." * level, end="")
