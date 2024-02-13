@@ -510,7 +510,7 @@ def read_stl_file(filename):
         raise FileNotFoundError(f"{filename} not found.")
 
     the_shape = TopoDS_Shape()
-    StlAPI.Read(the_shape, filename)
+    StlAPI.Read_(the_shape, filename)
 
     if the_shape.IsNull():
         raise AssertionError("Shape is null.")
@@ -760,7 +760,7 @@ def write_brep_file(shapes, filename):
     if isinstance(shapes, list):
         shapes = _create_Compound(shapes)
 
-    status = BRepTools.Write(shapes, filename)
+    status = BRepTools.Write_(shapes, filename)
     if not status:
         raise AssertionError("Not done.")
     if not os.path.isfile(filename):
@@ -773,7 +773,7 @@ def write_ply_file(a_shape, ply_filename):
     """ocaf based ply exporter"""
     # create a document
     doc = TDocStd_Document("pythonocc-doc-ply-export")
-    shape_tool = XCAFDoc_DocumentTool.ShapeTool(doc.Main())
+    shape_tool = XCAFDoc_DocumentTool.ShapeTool_(doc.Main())
 
     # mesh shape
     BRepTools.Clean(a_shape)
